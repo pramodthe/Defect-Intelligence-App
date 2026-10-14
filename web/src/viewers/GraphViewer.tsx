@@ -1,0 +1,36 @@
+import {useEffect,useRef,useState} from 'react';
+import {useParams,Link} from 'react-router-dom';
+import {useQuery} from '@tanstack/react-query';
+import cytoscape from 'cytoscape';
+import {api,Row} from '../api/client';
+import {Notice,ErrorBox,Status,SourceLinks} from '../components/shared';
+export default function GraphViewer({findingId,entityId}:{findingId?:string,entityId?:string}){
+ const params=useParams();const id=entityId||findingId||params.id;const canvas=useRef<HTMLDivElement>(null);const instance=useRef<cytoscape.Core|null>(null);const[selected,setSelected]=useState<Row>();const[limit,setLimit]=useState(50);const{data,error}=useQuery({queryKey:['graph',id,limit,!!entityId],queryFn:()=>api(entityId?'/knowledge-graph?entity_id='+encodeURIComponent(entityId)+'&limit='+limit:'/findings/'+id+'/graph?limit='+limit),enabled:!!id});
+ useEffect(()=>{
+  if(!data||!canvas.current)return;
+  setSelected(undefined);
+  const graph=cytoscape({container:canvas.current,elements:[...data.nodes.map((n:Row)=>({data:{...n,display_label:n.kind==='Assessment'?'Assessment':n.label.length>42?n.label.slice(0,39)+'…':n.label}})),...data.edges.map((e:Row)=>({data:e}))],layout:{name:'cose',animate:false,nodeDimensionsIncludeLabels:true,nodeRepulsion:()=>60000,idealEdgeLength:()=>150},style:[
+   {selector:'node',style:{label:'data(display_label)','background-color':'#16867c',color:'#142b42','font-size':12,'text-wrap':'wrap','text-max-width':'110px','text-valign':'bottom','text-margin-y':9,width:20,height:20}},
+   {selector:'node[kind="Assertion"]',style:{'background-color':'#839bb0',width:15,height:15}},
+   {selector:'node[kind="DomainAssertion"]',style:{'background-color':'#839bb0',width:15,height:15}},
+   {selector:'node[kind="OntologyClass"]',style:{'background-color':'#8064ab',shape:'round-rectangle',width:26,height:26}},
+   {selector:'node[kind="TextPassage"]',style:{'background-color':'#c49645'}},
+   {selector:'node[kind="SourceAnchor"]',style:{'background-color':'#c49645'}},
+   {selector:'node[kind="Concept"]',style:{'background-color':'#8064ab'}},
+   {selector:'node[kind="MediaOccurrence"], node[kind="MediaAsset"]',style:{'background-color':'#4b9bc0'}},
+   {selector:'node[kind="Assertion"], node[kind="DomainAssertion"], node[kind="SourceAnchor"], node[kind="TextPassage"]',style:{label:''}},
+   {selector:'node:selected',style:{label:'data(display_label)','border-color':'#13283e','border-width':3}},
+   {selector:'.dim',style:{opacity:0.18,'text-opacity':0.08}},
+   {selector:'node.focus',style:{'font-weight':'bold','text-opacity':1}},
+   {selector:'edge',style:{width:1.2,'line-color':'#c3cfd8','curve-style':'bezier','target-arrow-shape':'triangle','target-arrow-color':'#c3cfd8'}}]});
+  instance.current=graph;graph.on('tap','node',(event)=>selectNode(event.target.id()));
+  const observer=new ResizeObserver(()=>{graph.resize();graph.fit(undefined,40)});observer.observe(canvas.current);
+  return()=>{observer.disconnect();graph.destroy();instance.current=null};
+ },[data]);
+ function selectNode(value:string){const node=data?.nodes.find((n:Row)=>n.id===value);setSelected(node);const graph=instance.current;if(!graph)return;graph.elements().removeClass('dim focus');graph.nodes().unselect();if(value){const element=graph.getElementById(value);element.select();const neighborhood=element.closedNeighborhood();graph.elements().difference(neighborhood).addClass('dim');neighborhood.addClass('focus')}}
+ return <div className="page-pad evidence-graph">{data?.root?<h2>{data.root.label}</h2>:null}<div className="graph-toolbar">{entityId?<Link to={'/ontology?class='+(data?.root?.class_id||'DomainRecord')}>Inspect domain class ↗</Link>:<Link to={'/findings/'+id}>Open finding details ↗</Link>}<button onClick={()=>instance.current?.fit(undefined,40)}>Fit graph</button><button aria-label="Zoom graph in" onClick={()=>instance.current?.zoom((instance.current?.zoom()||1)*1.2)}>Zoom in</button><button aria-label="Zoom graph out" onClick={()=>instance.current?.zoom((instance.current?.zoom()||1)/1.2)}>Zoom out</button><button disabled={limit===100} onClick={()=>setLimit(100)}>Expand to 100 nodes</button></div>
+  <Notice>{data?.coverage||'Loading graph provenance…'}{data?.truncated?' · Results bounded; further source inspection required.':''}</Notice>
+  {data?<div className="graph-legend"><strong>{data.nodes.length} nodes · {data.edges.length} relationships shown</strong><span>Teal: domain records</span><span>Slate: assertions</span><span>Gold: source passages</span><span>Purple: classes / concepts</span><span>Blue: visuals</span></div>:null}
+  <div className="graph-layout"><div className="graph-canvas" ref={canvas} role="img" aria-label="Report knowledge graph"/><aside className="graph-inspector"><label>Inspect a node<select aria-label="Inspect a node" value={selected?.id||''} onChange={e=>selectNode(e.target.value)}><option value="">Choose a domain record or class</option>{data?.nodes.filter((n:Row)=>!n.assertion).map((n:Row)=><option key={n.id} value={n.id}>{n.label} · {n.domain?.class_id||n.kind}</option>)}</select></label><label>Inspect a relationship<select aria-label="Inspect a relationship" value={selected?.id||''} onChange={e=>selectNode(e.target.value)}><option value="">Choose a sourced assertion</option>{data?.nodes.filter((n:Row)=>n.assertion).map((n:Row)=><option key={n.id} value={n.id}>{n.label} · {n.assertion.scope}</option>)}{selected&&!selected.assertion?<option value={selected.id}>{selected.label}</option>:null}</select></label>{selected?<><h2>{selected.label}</h2><Status value={selected.kind}/>{selected.assertion?<><h3>Qualified relationship</h3><dl>{['statement_kind','kind','scope','review_state','reference_verification','applicability','repair_outcome','certainty','value'].map(k=><div key={k}><dt>{k}</dt><dd>{k==='scope'?selected.assertion.scope_label||selected.assertion[k]:selected.assertion[k]}</dd></div>)}</dl><SourceLinks ids={selected.assertion.anchor_ids}/></>:['SourceAnchor','TextPassage'].includes(selected.kind)?<SourceLinks ids={[selected.id]}/>:selected.kind==='Concept'?<Link to={'/knowledge-graph?view=terms&concept='+encodeURIComponent(selected.id)}>Inspect search term ↗</Link>:selected.kind==='OntologyClass'?<><p>{selected.definition.definition}</p><Link to={'/ontology?class='+encodeURIComponent(selected.definition.id)}>Inspect this domain class ↗</Link></>:selected.domain?<><Link to={'/ontology?class='+encodeURIComponent(selected.domain.class_id)}>Inspect {selected.domain.class_id} class ↗</Link><dl>{['statement_kind','scope','review_state','reference_verification','applicability','repair_outcome','certainty'].map(k=><div key={k}><dt>{k.replaceAll('_',' ')}</dt><dd>{k==='scope'?selected.domain.scope_label||selected.domain[k]:selected.domain[k]}</dd></div>)}</dl><p className="record-excerpt">{String(selected.domain.properties.recorded_text||selected.domain.properties.work_scope||'').slice(0,1200)}</p><SourceLinks ids={selected.domain.anchor_ids}/>{['ImageOccurrence','MediaOccurrence','OCRExtraction'].includes(selected.kind)&&selected.kind!=='OCRExtraction'?<Link to={'/media/'+selected.id}>Open original image ↗</Link>:null}</>:<p>Select an assertion node to inspect supporting passages.</p>}</>:<p>Select a node to inspect the source and status behind it.</p>}</aside></div><ErrorBox error={error}/>
+ </div>
+}

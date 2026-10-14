@@ -1,0 +1,12 @@
+.venv
+.cache
+.env
+data
+data*
+web/node_modules
+web/dist
+**/*.docx
+**/*.pdf
+**/*.sqlite*
+.git
+tests

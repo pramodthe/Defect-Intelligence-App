@@ -1,0 +1,80 @@
+{
+  "application": "Defect Intelligence",
+  "version": "0.1.0",
+  "status": "working pilot; M5 not accepted",
+  "native_python": "3.12.14",
+  "native_node": "24.19.0",
+  "packages": {
+    "langgraph": "1.2.14",
+    "langchain-core": "1.6.9",
+    "langgraph-checkpoint-postgres": "3.1.2",
+    "fastapi": "0.143.0",
+    "docling": "2.138.0",
+    "rapidocr": "3.10.0",
+    "pypdfium2": "5.14.0",
+    "sentence-transformers": "5.7.0",
+    "transformers": "5.19.0",
+    "torch": "2.14.1",
+    "qdrant-client": "1.19.1",
+    "neo4j": "5.28.6",
+    "rdflib": "7.6.0",
+    "langchain-openai": "1.7.0"
+  },
+  "native_services": {
+    "postgres": "17.6",
+    "neo4j": "5.26.32",
+    "qdrant": "1.19.2",
+    "java": "Temurin 21.0.12.1+1"
+  },
+  "model": {
+    "model": "BAAI/bge-base-en-v1.5",
+    "revision": "a5beb1e3e68b9ab74eb54cfd186867f64f240e1a",
+    "dimension": 768,
+    "max_tokens": 512,
+    "chunk_hard_limit": 480,
+    "hosted_text_options": [
+      "openai/text-embedding-3-small",
+      "openai/text-embedding-3-large",
+      "fireworks/qwen3-embedding-8b"
+    ],
+    "hosted_validation": "Live Fireworks Qwen3 Embedding 8B: real report rebuilt and published to Qdrant; OpenAI contract tests remain mocked",
+    "visual_embeddings": "Voyage Multimodal 3.5: Fireworks deployment adapter gated by synthetic cross-modal test; documented Voyage direct alternative",
+    "visual_validation": "Mock HTTP contracts, actual isolated Qdrant pixel-index pipeline; no live provider/source pixel request"
+  },
+  "graph_versions": [
+    "ingestion/1",
+    "research/2"
+  ],
+  "schema_versions": [
+    "document-ir/1",
+    "chunk/1"
+  ],
+  "catalog_version": "domain/1",
+  "external_text_vision": "disabled by default",
+  "lock_hashes": {
+    "uv.lock": "ff43f2b6c0d85c067f5b6f050a1742d520ae62d832c70d4ad19220b61cf19978",
+    "web/pnpm-lock.yaml": "4fcdbe5919d2e3cbd3edc55b599d61d72393e036b56061a741a7a9e386ca3639"
+  },
+  "unexecuted_release_gates": [
+    "fresh Compose installation",
+    "reviewed real jurisdiction/source coverage",
+    "50 held-out questions",
+    "ten manual time baselines",
+    "100-report contention benchmark",
+    "live OpenAI provider validation",
+    "live multimodal provider validation"
+  ],
+  "live_research": {
+    "provider": "fireworks",
+    "llm": "accounts/fireworks/models/qwen3p8-max",
+    "embedding": "accounts/fireworks/models/qwen3-embedding-8b",
+    "dimensions": 4096,
+    "run_id": "run_74f92a25a64a49b48998a3ee5e31bb3b",
+    "status": "partial (evidence gaps retained)",
+    "claims": 10,
+    "model_calls": 5,
+    "exact_source_tool_calls": 4,
+    "checkpoint_backend": "postgres",
+    "image_pixels": "disabled"
+  }
+}

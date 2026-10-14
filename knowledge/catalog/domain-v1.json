@@ -1,0 +1,21 @@
+{
+  "version": "domain/1",
+  "definition_status": "Search vocabulary from ONTOLOGY.md; no regulatory classification rules activated",
+  "concepts": [
+    {"id":"defect.waterproofing","family":"DefectType","label":"Waterproofing failure","aliases":["waterproofing","waterproof membrane","failed membrane","membrane failure"],"definition":"Report discussions of waterproofing systems and failures; a discovery concept, not an automatic diagnosis."},
+    {"id":"defect.water_ingress","family":"DefectType","label":"Water ingress","aliases":["water ingress","moisture ingress","leakage","leaking"],"definition":"Recorded or assessed unwanted moisture entry; observation and cause must remain distinct."},
+    {"id":"defect.membrane_termination","family":"DefectType","label":"Membrane termination","aliases":["membrane termination","upturn","terminated membrane","soil line"],"definition":"Report discussion of membrane edges, upturns and termination interfaces."},
+    {"id":"defect.drainage","family":"DefectType","label":"Drainage and overflow","aliases":["drainage","overflow","ponding","insufficient falls"],"definition":"Recorded drainage conditions, water retention or overflow details."},
+    {"id":"element.planter","family":"BuildingElement","label":"Planter box","aliases":["planter box","planter","garden planter"],"definition":"A planting enclosure; use source-backed instances for a particular location."},
+    {"id":"element.roof","family":"BuildingElement","label":"Roof","aliases":["roof","rooftop"],"definition":"A roof element described by a source."},
+    {"id":"element.balcony","family":"BuildingElement","label":"Balcony","aliases":["balcony","terrace"],"definition":"A balcony or terrace; an alias is discovery context, not proof of equivalence."},
+    {"id":"material.concrete","family":"Material","label":"Concrete","aliases":["concrete","off-form","off form"],"definition":"Concrete material or construction described in a source."},
+    {"id":"defect.cracking","family":"DefectType","label":"Cracking","aliases":["crack","cracking","fracture"],"definition":"Recorded or assessed cracking; no severity or causation inferred from this term."},
+    {"id":"defect.fire","family":"DefectType","label":"Fire related finding","aliases":["fire","fire stopping","fire resistance"],"definition":"Source-backed discussions of fire-related performance or work."},
+    {"id":"building.class2","family":"BuildingClass","label":"Building Class 2","aliases":["class 2"],"definition":"Building/part classification candidate. Requires versioned original definitions, sourced facts and reviewed rules."},
+    {"id":"finish.class2","family":"ConcreteFinishClass","label":"Concrete finish Class 2","aliases":["class 2"],"definition":"A concrete finish classification within its specification/standard context; separate from building classification."},
+    {"id":"membrane.class2","family":"MembraneClass","label":"Membrane Class 2","aliases":["class 2"],"definition":"A membrane classification in its standard/product context; separate from building and finish classes."},
+    {"id":"use.apartment","family":"BuildingUse","label":"Apartment use","aliases":["apartment","apartments","flat"],"definition":"A use candidate. This term alone does not establish a building class."}
+  ],
+  "allowed_predicates": ["contains", "has_occurrence", "records", "has_reasoning", "has_remediation", "has_status", "has_result", "has_responsibility", "has_extent", "mentions_concept", "cites", "uses_asset", "has_visual", "reported_history", "classified_as", "references", "supported_by"]
+}

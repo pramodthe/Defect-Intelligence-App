@@ -1,0 +1,3117 @@
+{
+  "version": "building-defect-domain/1",
+  "source_document": "ONTOLOGY.md",
+  "source_sha256": "1b190d66079b302d032369a48a2f63b51989c5f5e089ad14de4b86331a266084",
+  "classes": [
+    {
+      "id": "DomainRecord",
+      "label": "Domain Record",
+      "parent": null,
+      "group": "Governance",
+      "definition": "A versioned domain record with source identity, scope and independent evidence-status dimensions.",
+      "properties": [
+        "source_id",
+        "recorded_text",
+        "source_locator"
+      ],
+      "source_section": "Evidence status and uncertainty"
+    },
+    {
+      "id": "Project",
+      "label": "Project",
+      "parent": "DomainRecord",
+      "group": "Context",
+      "definition": "The job or development to which buildings, reports, approvals and work belong.",
+      "properties": [
+        "recorded_identifier",
+        "recorded_name"
+      ],
+      "source_section": "Buildings and their context"
+    },
+    {
+      "id": "Building",
+      "label": "Building",
+      "parent": "DomainRecord",
+      "group": "Context",
+      "definition": "A physical building within a project; a project may contain several buildings.",
+      "properties": [
+        "recorded_identifier",
+        "recorded_name"
+      ],
+      "source_section": "Buildings and their context"
+    },
+    {
+      "id": "BuildingPart",
+      "label": "Building Part",
+      "parent": "DomainRecord",
+      "group": "Context",
+      "definition": "An identifiable building part with its own use and assessment context.",
+      "properties": [
+        "recorded_name",
+        "recorded_use"
+      ],
+      "source_section": "Buildings and their context"
+    },
+    {
+      "id": "Location",
+      "label": "Location",
+      "parent": "DomainRecord",
+      "group": "Context",
+      "definition": "The report's spatial description, preserving wording and keeping failure and damage locations distinct.",
+      "properties": [
+        "recorded_location",
+        "location_role"
+      ],
+      "source_section": "Buildings and their context"
+    },
+    {
+      "id": "BuildingElement",
+      "label": "Building Element",
+      "parent": "DomainRecord",
+      "group": "Context",
+      "definition": "A physical component discussed by the report, with recorded or candidate identity and location.",
+      "properties": [
+        "element_category",
+        "recorded_name",
+        "resolution"
+      ],
+      "source_section": "Buildings and their context"
+    },
+    {
+      "id": "ConstructionSystem",
+      "label": "Construction System",
+      "parent": "DomainRecord",
+      "group": "Context",
+      "definition": "How recorded elements work together in a system; not inferred from similarity alone.",
+      "properties": [
+        "recorded_name",
+        "resolution"
+      ],
+      "source_section": "Buildings and their context"
+    },
+    {
+      "id": "Material",
+      "label": "Material",
+      "parent": "DomainRecord",
+      "group": "Context",
+      "definition": "A material explicitly mentioned or identified by the source.",
+      "properties": [
+        "recorded_name",
+        "resolution"
+      ],
+      "source_section": "Buildings and their context"
+    },
+    {
+      "id": "Product",
+      "label": "Product",
+      "parent": "DomainRecord",
+      "group": "Context",
+      "definition": "A proprietary product or assembly where recorded; unknown products remain unknown.",
+      "properties": [
+        "recorded_name",
+        "manufacturer",
+        "resolution"
+      ],
+      "source_section": "Buildings and their context"
+    },
+    {
+      "id": "Interface",
+      "label": "Interface",
+      "parent": "DomainRecord",
+      "group": "Context",
+      "definition": "A sourced junction or interface between elements, such as a membrane-to-wall termination.",
+      "properties": [
+        "recorded_name",
+        "resolution"
+      ],
+      "source_section": "Buildings and their context"
+    },
+    {
+      "id": "BuildingUse",
+      "label": "Building Use",
+      "parent": "DomainRecord",
+      "group": "Context",
+      "definition": "Documented use of a building or part, retained as evidence rather than automatic classification.",
+      "properties": [
+        "recorded_use"
+      ],
+      "source_section": "Buildings and their context"
+    },
+    {
+      "id": "EnvironmentalCondition",
+      "label": "Environmental Condition",
+      "parent": "DomainRecord",
+      "group": "Context",
+      "definition": "A recorded environmental condition, including exposure or habitable space below.",
+      "properties": [
+        "recorded_text"
+      ],
+      "source_section": "Buildings and their context"
+    },
+    {
+      "id": "ConstructionCondition",
+      "label": "Construction Condition",
+      "parent": "DomainRecord",
+      "group": "Context",
+      "definition": "A recorded construction condition, such as height, construction type or internal/external context.",
+      "properties": [
+        "recorded_text"
+      ],
+      "source_section": "Buildings and their context"
+    },
+    {
+      "id": "Assessment",
+      "label": "Assessment",
+      "parent": "DomainRecord",
+      "group": "Defects and assessments",
+      "definition": "An attributable assessment with premises, source, purpose and qualifications.",
+      "properties": [
+        "recorded_text",
+        "assessment_purpose"
+      ],
+      "source_section": "Defect items and individual occurrences"
+    },
+    {
+      "id": "ClassificationAssessment",
+      "label": "Classification Assessment",
+      "parent": "Assessment",
+      "group": "Classification",
+      "definition": "An assessment of a particular subject using a stated classification definition and context.",
+      "properties": [
+        "class_identifier",
+        "definition_reference",
+        "assessment_date"
+      ],
+      "source_section": "Building classification"
+    },
+    {
+      "id": "BuildingClassificationAssessment",
+      "label": "Building Classification Assessment",
+      "parent": "ClassificationAssessment",
+      "group": "Classification",
+      "definition": "A building/part classification assessment; never propagated to other parts without support.",
+      "properties": [
+        "class_identifier",
+        "subclass_identifier",
+        "recorded_use"
+      ],
+      "source_section": "Building classification"
+    },
+    {
+      "id": "ClassificationDefinition",
+      "label": "Classification Definition",
+      "parent": "DomainRecord",
+      "group": "Classification",
+      "definition": "An editioned original definition and exceptions used by a reviewed classification assessment.",
+      "properties": [
+        "class_identifier",
+        "definition_reference"
+      ],
+      "source_section": "Building classification"
+    },
+    {
+      "id": "BuildingClass",
+      "label": "Building Class",
+      "parent": "DomainRecord",
+      "group": "Classification",
+      "definition": "A building or building-part class in its code/jurisdiction definition; distinct from finish and membrane classes.",
+      "properties": [
+        "class_identifier"
+      ],
+      "source_section": "Building classification"
+    },
+    {
+      "id": "ConcreteFinishClass",
+      "label": "Concrete Finish Class",
+      "parent": "DomainRecord",
+      "group": "Classification",
+      "definition": "A concrete surface finish classification in its specification or standard context.",
+      "properties": [
+        "class_identifier"
+      ],
+      "source_section": "Building classification"
+    },
+    {
+      "id": "MembraneClass",
+      "label": "Membrane Class",
+      "parent": "DomainRecord",
+      "group": "Classification",
+      "definition": "A membrane classification in its product or standard context.",
+      "properties": [
+        "class_identifier"
+      ],
+      "source_section": "Building classification"
+    },
+    {
+      "id": "WorkEvent",
+      "label": "Work Event",
+      "parent": "DomainRecord",
+      "group": "Work and approvals",
+      "definition": "Original construction, alteration or recorded repair with affected scope, dates and outcome evidence.",
+      "properties": [
+        "work_kind",
+        "work_date",
+        "recorded_outcome"
+      ],
+      "source_section": "Work and approval context"
+    },
+    {
+      "id": "OriginalConstruction",
+      "label": "Original Construction",
+      "parent": "WorkEvent",
+      "group": "Work and approvals",
+      "definition": "The original construction event, separate from subsequent or proposed work.",
+      "properties": [
+        "work_date",
+        "work_scope"
+      ],
+      "source_section": "Work and approval context"
+    },
+    {
+      "id": "Alteration",
+      "label": "Alteration",
+      "parent": "WorkEvent",
+      "group": "Work and approvals",
+      "definition": "A later alteration with its own scope, approval and applicability context.",
+      "properties": [
+        "work_date",
+        "work_scope"
+      ],
+      "source_section": "Work and approval context"
+    },
+    {
+      "id": "RepairEvent",
+      "label": "Repair Event",
+      "parent": "WorkEvent",
+      "group": "Work and approvals",
+      "definition": "A repair reported or recorded as undertaken; a recommendation alone cannot create this event.",
+      "properties": [
+        "work_date",
+        "work_scope",
+        "recorded_outcome"
+      ],
+      "source_section": "Work and approval context"
+    },
+    {
+      "id": "ProposedRemedialWork",
+      "label": "Proposed Remedial Work",
+      "parent": "DomainRecord",
+      "group": "Work and approvals",
+      "definition": "Proposed remedial work, kept separate from undertaken repairs and original construction.",
+      "properties": [
+        "work_scope"
+      ],
+      "source_section": "Work and approval context"
+    },
+    {
+      "id": "WorkPackage",
+      "label": "Work Package",
+      "parent": "DomainRecord",
+      "group": "Work and approvals",
+      "definition": "A particular construction or remedial work scope used by an assessment context.",
+      "properties": [
+        "work_scope",
+        "work_kind"
+      ],
+      "source_section": "Work and approval context"
+    },
+    {
+      "id": "AssessmentContext",
+      "label": "Assessment Context",
+      "parent": "DomainRecord",
+      "group": "Work and approvals",
+      "definition": "The building part, work purpose, jurisdiction, dates and approval pathway for a question.",
+      "properties": [
+        "assessment_purpose",
+        "jurisdiction",
+        "approval_pathway",
+        "relevant_dates"
+      ],
+      "source_section": "Work and approval context"
+    },
+    {
+      "id": "ProjectFact",
+      "label": "Project Fact",
+      "parent": "DomainRecord",
+      "group": "Work and approvals",
+      "definition": "A sourced project fact or attributed user declaration, retaining conflicts and unknown values.",
+      "properties": [
+        "fact_name",
+        "fact_value",
+        "fact_provenance"
+      ],
+      "source_section": "Work and approval context"
+    },
+    {
+      "id": "ApprovalRecord",
+      "label": "Approval Record",
+      "parent": "DomainRecord",
+      "group": "Work and approvals",
+      "definition": "A consent, certificate, stamped drawing or declared design; source statements do not erase contrary observations.",
+      "properties": [
+        "approval_kind",
+        "recorded_identifier",
+        "approval_date",
+        "recorded_text"
+      ],
+      "source_section": "Work and approval context"
+    },
+    {
+      "id": "ComplianceCertificate",
+      "label": "Compliance Certificate",
+      "parent": "ApprovalRecord",
+      "group": "Work and approvals",
+      "definition": "An attributable statement of certification with recorded scope and source.",
+      "properties": [
+        "recorded_identifier",
+        "recorded_text"
+      ],
+      "source_section": "Work and approval context"
+    },
+    {
+      "id": "InspectionRecord",
+      "label": "Inspection Record",
+      "parent": "DomainRecord",
+      "group": "Work and approvals",
+      "definition": "An inspection's recorded observations, author, dates and scope.",
+      "properties": [
+        "inspection_date",
+        "recorded_text"
+      ],
+      "source_section": "Work and approval context"
+    },
+    {
+      "id": "PerformanceSolutionRecord",
+      "label": "Performance Solution Record",
+      "parent": "ApprovalRecord",
+      "group": "Work and approvals",
+      "definition": "A documented Performance Solution with stated scope and evidence; existence cannot be inferred from a DTS departure.",
+      "properties": [
+        "recorded_identifier",
+        "work_scope"
+      ],
+      "source_section": "Work and approval context"
+    },
+    {
+      "id": "SourceDocument",
+      "label": "Source Document",
+      "parent": "DomainRecord",
+      "group": "Evidence",
+      "definition": "A report, original authority, drawing, specification, manufacturer instruction, certificate or inspection document.",
+      "properties": [
+        "document_role",
+        "source_availability"
+      ],
+      "source_section": "Evidence and embedded images"
+    },
+    {
+      "id": "DocumentVersion",
+      "label": "Document Version",
+      "parent": "SourceDocument",
+      "group": "Evidence",
+      "definition": "An immutable document version, distinct from editions it mentions.",
+      "properties": [
+        "filename",
+        "asset_hash",
+        "publication_date",
+        "inspection_date"
+      ],
+      "source_section": "Evidence and embedded images"
+    },
+    {
+      "id": "ReportVersion",
+      "label": "Report Version",
+      "parent": "DocumentVersion",
+      "group": "Evidence",
+      "definition": "A particular expert report version whose authored opinions and observations remain attributable.",
+      "properties": [
+        "filename",
+        "author_name",
+        "publication_date",
+        "inspection_date"
+      ],
+      "source_section": "Evidence and embedded images"
+    },
+    {
+      "id": "Drawing",
+      "label": "Drawing",
+      "parent": "DocumentVersion",
+      "group": "Requirements",
+      "definition": "A project drawing with identifier, revision and source scope.",
+      "properties": [
+        "recorded_identifier",
+        "revision_identifier"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "Specification",
+      "label": "Specification",
+      "parent": "DocumentVersion",
+      "group": "Requirements",
+      "definition": "A project specification, distinguished from code adoption and manufacturer guidance.",
+      "properties": [
+        "recorded_identifier",
+        "revision_identifier"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "ManufacturerInstruction",
+      "label": "Manufacturer Instruction",
+      "parent": "DocumentVersion",
+      "group": "Requirements",
+      "definition": "An identified manufacturer's instruction and its product/edition context.",
+      "properties": [
+        "manufacturer",
+        "recorded_identifier",
+        "revision_identifier"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "CodeFamily",
+      "label": "Code Family",
+      "parent": "DomainRecord",
+      "group": "Editions and references",
+      "definition": "A BCA/NCC document family, separate from its editions and volumes.",
+      "properties": [
+        "reference_family"
+      ],
+      "source_section": "Australian Standard editions and reference relationships"
+    },
+    {
+      "id": "CodeEdition",
+      "label": "Code Edition",
+      "parent": "DomainRecord",
+      "group": "Editions and references",
+      "definition": "A specific BCA/NCC published edition and amendment; publication alone does not establish adoption or applicability.",
+      "properties": [
+        "reference_family",
+        "edition_year",
+        "amendments",
+        "publisher",
+        "publication_date"
+      ],
+      "source_section": "Australian Standard editions and reference relationships"
+    },
+    {
+      "id": "CodeVolume",
+      "label": "Code Volume",
+      "parent": "DomainRecord",
+      "group": "Editions and references",
+      "definition": "An edition-specific volume with its own identity and source coverage; building class alone does not select it.",
+      "properties": [
+        "volume_identifier",
+        "recorded_name"
+      ],
+      "source_section": "Australian Standard editions and reference relationships"
+    },
+    {
+      "id": "JurisdictionProvision",
+      "label": "Jurisdiction Provision",
+      "parent": "DomainRecord",
+      "group": "Editions and references",
+      "definition": "A separately sourced jurisdiction variation or effective/adoption provision.",
+      "properties": [
+        "jurisdiction",
+        "effective_date",
+        "recorded_text"
+      ],
+      "source_section": "Australian Standard editions and reference relationships"
+    },
+    {
+      "id": "StandardFamily",
+      "label": "Standard Family",
+      "parent": "DomainRecord",
+      "group": "Editions and references",
+      "definition": "An Australian Standard family, such as AS 4654, separate from parts and editions.",
+      "properties": [
+        "reference_family"
+      ],
+      "source_section": "Australian Standard editions and reference relationships"
+    },
+    {
+      "id": "StandardPart",
+      "label": "Standard Part",
+      "parent": "DomainRecord",
+      "group": "Editions and references",
+      "definition": "A particular standard part; AS 4654.1 and AS 4654.2 are not interchangeable.",
+      "properties": [
+        "reference_family",
+        "part_identifier"
+      ],
+      "source_section": "Australian Standard editions and reference relationships"
+    },
+    {
+      "id": "StandardEdition",
+      "label": "Standard Edition",
+      "parent": "DomainRecord",
+      "group": "Editions and references",
+      "definition": "A specific part/year/amendment identity; reported citations remain unverified until original source review.",
+      "properties": [
+        "reference_family",
+        "part_identifier",
+        "edition_year",
+        "amendments",
+        "publisher"
+      ],
+      "source_section": "Australian Standard editions and reference relationships"
+    },
+    {
+      "id": "ReferenceRelationship",
+      "label": "Reference Relationship",
+      "parent": "DomainRecord",
+      "group": "Editions and references",
+      "definition": "An editioned, scoped reference link with explicit basis, conditions, exceptions and verification state.",
+      "properties": [
+        "reference_basis",
+        "conditions",
+        "exceptions",
+        "recorded_text"
+      ],
+      "source_section": "Australian Standard editions and reference relationships"
+    },
+    {
+      "id": "ReferenceChain",
+      "label": "Reference Chain",
+      "parent": "DomainRecord",
+      "group": "Editions and references",
+      "definition": "A sequence of independently assessed primary, secondary or further reference links.",
+      "properties": [
+        "reference_basis",
+        "recorded_text"
+      ],
+      "source_section": "Australian Standard editions and reference relationships"
+    },
+    {
+      "id": "SourceFragment",
+      "label": "Source Fragment",
+      "parent": "DomainRecord",
+      "group": "Requirements",
+      "definition": "An identified clause, table, figure, appendix, definition, note or detail in a specific source edition.",
+      "properties": [
+        "fragment_kind",
+        "fragment_identifier",
+        "printed_source_page",
+        "fragment_role"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "Clause",
+      "label": "Clause",
+      "parent": "SourceFragment",
+      "group": "Requirements",
+      "definition": "A clause or subclause with parent, definitions, conditions, exceptions and original context.",
+      "properties": [
+        "fragment_identifier",
+        "conditions",
+        "exceptions"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "Table",
+      "label": "Table",
+      "parent": "SourceFragment",
+      "group": "Requirements",
+      "definition": "A table with its headers, notes, units and original reading structure.",
+      "properties": [
+        "fragment_identifier",
+        "units_as_written"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "Figure",
+      "label": "Figure",
+      "parent": "SourceFragment",
+      "group": "Requirements",
+      "definition": "A source figure with labels, dimensions, interfaces and original context.",
+      "properties": [
+        "fragment_identifier",
+        "printed_source_page"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "Appendix",
+      "label": "Appendix",
+      "parent": "SourceFragment",
+      "group": "Requirements",
+      "definition": "An appendix with its recorded normative/informative role.",
+      "properties": [
+        "fragment_identifier",
+        "fragment_role"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "Definition",
+      "label": "Definition",
+      "parent": "SourceFragment",
+      "group": "Requirements",
+      "definition": "An editioned definition used by a requirement or classification assessment.",
+      "properties": [
+        "fragment_identifier"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "Note",
+      "label": "Note",
+      "parent": "SourceFragment",
+      "group": "Requirements",
+      "definition": "A source note retained with its provision; its role is not automatically mandatory.",
+      "properties": [
+        "fragment_identifier",
+        "fragment_role"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "Guidance",
+      "label": "Guidance",
+      "parent": "SourceFragment",
+      "group": "Requirements",
+      "definition": "Informative guidance, commentary or examples distinguished from mandatory provisions.",
+      "properties": [
+        "fragment_role"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "DrawingDetail",
+      "label": "Drawing Detail",
+      "parent": "SourceFragment",
+      "group": "Requirements",
+      "definition": "An identified project drawing detail with its drawing and revision identity.",
+      "properties": [
+        "fragment_identifier",
+        "revision_identifier"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "LegalProvision",
+      "label": "Legal Provision",
+      "parent": "SourceFragment",
+      "group": "Requirements",
+      "definition": "A cited legal provision with jurisdiction/version and source; report opinions are not binding legal determinations.",
+      "properties": [
+        "jurisdiction",
+        "version_date",
+        "fragment_identifier"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "Requirement",
+      "label": "Requirement",
+      "parent": "DomainRecord",
+      "group": "Requirements",
+      "definition": "A required outcome under an established source basis and assessment context.",
+      "properties": [
+        "requirement_identifier",
+        "requirement_basis",
+        "conditions",
+        "exceptions"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "PerformanceRequirement",
+      "label": "Performance Requirement",
+      "parent": "Requirement",
+      "group": "Requirements",
+      "definition": "A Performance Requirement considered in a compliance assessment.",
+      "properties": [
+        "requirement_basis"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "DTSProvision",
+      "label": "DTSProvision",
+      "parent": "Requirement",
+      "group": "Requirements",
+      "definition": "A DTS provision considered separately from a Performance Requirement or documented Performance Solution.",
+      "properties": [
+        "requirement_basis"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "ComplianceAssessment",
+      "label": "Compliance Assessment",
+      "parent": "Assessment",
+      "group": "Requirements",
+      "definition": "A finding/evidence assessment against considered requirements and a recorded compliance pathway.",
+      "properties": [
+        "compliance_pathway",
+        "assessment_purpose"
+      ],
+      "source_section": "Requirements and source fragments"
+    },
+    {
+      "id": "ApplicabilityAssessment",
+      "label": "Applicability Assessment",
+      "parent": "Assessment",
+      "group": "Editions and references",
+      "definition": "A context-specific supported, excluded or unresolved applicability decision using sourced facts and reviewed rules.",
+      "properties": [
+        "assessment_purpose",
+        "jurisdiction",
+        "conditions",
+        "exceptions"
+      ],
+      "source_section": "Australian Standard editions and reference relationships"
+    },
+    {
+      "id": "DefectItem",
+      "label": "Defect Item",
+      "parent": "DomainRecord",
+      "group": "Defects and assessments",
+      "definition": "An authored topic grouping that can contain distinct occurrences and explicitly shared reasoning.",
+      "properties": [
+        "recorded_name"
+      ],
+      "source_section": "Defect items and individual occurrences"
+    },
+    {
+      "id": "DefectOccurrence",
+      "label": "Defect Occurrence",
+      "parent": "DomainRecord",
+      "group": "Defects and assessments",
+      "definition": "A particular finding scoped to report/version/schedule, element and recorded location; repeated IDs are not merged automatically.",
+      "properties": [
+        "recorded_identifier",
+        "schedule_context",
+        "recorded_location"
+      ],
+      "source_section": "Defect items and individual occurrences"
+    },
+    {
+      "id": "Observation",
+      "label": "Observation",
+      "parent": "DomainRecord",
+      "group": "Defects and assessments",
+      "definition": "What the source records at a finding or stated shared scope, retaining method and attribution.",
+      "properties": [
+        "recorded_text",
+        "observation_method"
+      ],
+      "source_section": "Defect items and individual occurrences"
+    },
+    {
+      "id": "TestMeasurement",
+      "label": "Test Measurement",
+      "parent": "DomainRecord",
+      "group": "Defects and assessments",
+      "definition": "A source reading, dimension or test with value, units, method, instrument and conditions as written; OCR remains uncertain.",
+      "properties": [
+        "value_as_written",
+        "units_as_written",
+        "measurement_method",
+        "instrument",
+        "measurement_date",
+        "conditions"
+      ],
+      "source_section": "Defect items and individual occurrences"
+    },
+    {
+      "id": "ExpertAssessment",
+      "label": "Expert Assessment",
+      "parent": "Assessment",
+      "group": "Defects and assessments",
+      "definition": "An author's conclusion about a condition or departure with source-backed premises.",
+      "properties": [
+        "author_name",
+        "recorded_text"
+      ],
+      "source_section": "Defect items and individual occurrences"
+    },
+    {
+      "id": "OccurrenceExtentAssessment",
+      "label": "Occurrence Extent Assessment",
+      "parent": "ExpertAssessment",
+      "group": "Defects and assessments",
+      "definition": "An authored specific/recurring/systemic distribution assessment, separate from physical severity and statutory status.",
+      "properties": [
+        "recorded_text"
+      ],
+      "source_section": "Defect items and individual occurrences"
+    },
+    {
+      "id": "StatusAssessment",
+      "label": "Status Assessment",
+      "parent": "ExpertAssessment",
+      "group": "Defects and assessments",
+      "definition": "An authored major/non-major or other status with its cited basis and reasoning; element status alone is insufficient.",
+      "properties": [
+        "recorded_text",
+        "requirement_basis"
+      ],
+      "source_section": "Defect items and individual occurrences"
+    },
+    {
+      "id": "SeverityAssessment",
+      "label": "Severity Assessment",
+      "parent": "ExpertAssessment",
+      "group": "Defects and assessments",
+      "definition": "A physical severity assessment, independent of occurrence extent and statutory major-defect status.",
+      "properties": [
+        "recorded_text"
+      ],
+      "source_section": "Defect items and individual occurrences"
+    },
+    {
+      "id": "CauseAssessment",
+      "label": "Cause Assessment",
+      "parent": "ExpertAssessment",
+      "group": "Reasoning",
+      "definition": "An attributable confirmed, suspected, alternative or unresolved explanation; possible causes are not independently confirmed diagnoses.",
+      "properties": [
+        "recorded_text",
+        "causal_certainty",
+        "alternative_group"
+      ],
+      "source_section": "Reasoning and causation"
+    },
+    {
+      "id": "ConsequenceAssessment",
+      "label": "Consequence Assessment",
+      "parent": "ExpertAssessment",
+      "group": "Reasoning",
+      "definition": "An attributable existing or predicted consequence, retaining the distinction from a failure's location.",
+      "properties": [
+        "recorded_text",
+        "consequence_kind"
+      ],
+      "source_section": "Reasoning and causation"
+    },
+    {
+      "id": "Reasoning",
+      "label": "Reasoning",
+      "parent": "DomainRecord",
+      "group": "Reasoning",
+      "definition": "The author's premises and reasoning connecting observations, history, construction and considered requirements.",
+      "properties": [
+        "recorded_text",
+        "author_name"
+      ],
+      "source_section": "Reasoning and causation"
+    },
+    {
+      "id": "ApplicationInference",
+      "label": "Application Inference",
+      "parent": "Assessment",
+      "group": "Reasoning",
+      "definition": "A later application inference with explicit premises, separate from report-authored reasoning.",
+      "properties": [
+        "recorded_text",
+        "premise_ids"
+      ],
+      "source_section": "Reasoning and causation"
+    },
+    {
+      "id": "RemediationOption",
+      "label": "Remediation Option",
+      "parent": "DomainRecord",
+      "group": "Remediation",
+      "definition": "A source-authored proposed repair option with its scope, sequence, prerequisites, limitations and alternatives.",
+      "properties": [
+        "recorded_name",
+        "work_scope",
+        "alternative_group",
+        "limitations"
+      ],
+      "source_section": "Remediation and repair history"
+    },
+    {
+      "id": "RemediationScope",
+      "label": "Remediation Scope",
+      "parent": "DomainRecord",
+      "group": "Remediation",
+      "definition": "The source's complete repair scope and qualifications, including wider reinstatement alternatives.",
+      "properties": [
+        "recorded_text",
+        "limitations"
+      ],
+      "source_section": "Remediation and repair history"
+    },
+    {
+      "id": "RemediationStep",
+      "label": "Remediation Step",
+      "parent": "DomainRecord",
+      "group": "Remediation",
+      "definition": "A source-listed proposed action in its authored order; a step is not evidence it was implemented.",
+      "properties": [
+        "sequence",
+        "recorded_text"
+      ],
+      "source_section": "Remediation and repair history"
+    },
+    {
+      "id": "Prerequisite",
+      "label": "Prerequisite",
+      "parent": "DomainRecord",
+      "group": "Remediation",
+      "definition": "A source-stated condition such as design, consent, access, manufacturer confirmation or temporary accommodation.",
+      "properties": [
+        "prerequisite_kind",
+        "recorded_text"
+      ],
+      "source_section": "Remediation and repair history"
+    },
+    {
+      "id": "VerificationCriterion",
+      "label": "Verification Criterion",
+      "parent": "DomainRecord",
+      "group": "Remediation",
+      "definition": "An acceptance/verification criterion supplied by a source or separately reviewed proposal.",
+      "properties": [
+        "recorded_text"
+      ],
+      "source_section": "Remediation and repair history"
+    },
+    {
+      "id": "Party",
+      "label": "Party",
+      "parent": "DomainRecord",
+      "group": "Parties",
+      "definition": "A named party with recorded identity; role or report proximity does not establish responsibility.",
+      "properties": [
+        "recorded_name"
+      ],
+      "source_section": "Parties and responsibility assessments"
+    },
+    {
+      "id": "PartyRole",
+      "label": "Party Role",
+      "parent": "DomainRecord",
+      "group": "Parties",
+      "definition": "A recorded builder, architect, certifier or waterproofer role, kept separate from a resolved named party.",
+      "properties": [
+        "role_name"
+      ],
+      "source_section": "Parties and responsibility assessments"
+    },
+    {
+      "id": "Appointment",
+      "label": "Appointment",
+      "parent": "DomainRecord",
+      "group": "Parties",
+      "definition": "A sourced appointment and scope linking a particular party to work or a project.",
+      "properties": [
+        "role_name",
+        "work_scope",
+        "relevant_dates"
+      ],
+      "source_section": "Parties and responsibility assessments"
+    },
+    {
+      "id": "ResponsibilityAssessment",
+      "label": "Responsibility Assessment",
+      "parent": "ExpertAssessment",
+      "group": "Parties",
+      "definition": "An authored responsibility attribution with work scope, reasoning and source; distinct from physical cause or legal determination.",
+      "properties": [
+        "recorded_text",
+        "schedule_context"
+      ],
+      "source_section": "Parties and responsibility assessments"
+    },
+    {
+      "id": "Authorship",
+      "label": "Authorship",
+      "parent": "DomainRecord",
+      "group": "Parties",
+      "definition": "An attributable document/statement author identity and recorded date.",
+      "properties": [
+        "author_name",
+        "relevant_dates"
+      ],
+      "source_section": "Parties and responsibility assessments"
+    },
+    {
+      "id": "OriginalAsset",
+      "label": "Original Asset",
+      "parent": "DomainRecord",
+      "group": "Evidence",
+      "definition": "Preserved original bytes identified by content hash, separately from every meaningful occurrence.",
+      "properties": [
+        "asset_hash",
+        "mime_type",
+        "byte_size"
+      ],
+      "source_section": "Evidence and embedded images"
+    },
+    {
+      "id": "ImageAsset",
+      "label": "Image Asset",
+      "parent": "OriginalAsset",
+      "group": "Evidence",
+      "definition": "Original image bytes; identical bytes can be reused without merging occurrences or contexts.",
+      "properties": [
+        "asset_hash",
+        "mime_type",
+        "byte_size"
+      ],
+      "source_section": "Evidence and embedded images"
+    },
+    {
+      "id": "ImageOccurrence",
+      "label": "Image Occurrence",
+      "parent": "DomainRecord",
+      "group": "Evidence",
+      "definition": "Where an image appears, its caption, source location, role and qualified finding/shared context.",
+      "properties": [
+        "image_role",
+        "caption",
+        "source_locator"
+      ],
+      "source_section": "Evidence and embedded images"
+    },
+    {
+      "id": "DepictedFragment",
+      "label": "Depicted Fragment",
+      "parent": "DomainRecord",
+      "group": "Evidence",
+      "definition": "The identified source fragment depicted by an image; identification is separate from original-source verification and applicability.",
+      "properties": [
+        "fragment_kind",
+        "fragment_identifier",
+        "printed_source_page"
+      ],
+      "source_section": "Evidence and embedded images"
+    },
+    {
+      "id": "TextPassage",
+      "label": "Text Passage",
+      "parent": "DomainRecord",
+      "group": "Evidence",
+      "definition": "An exact anchored native or OCR source span, retaining offsets and content kind.",
+      "properties": [
+        "recorded_text",
+        "start_cp",
+        "end_cp",
+        "content_kind",
+        "source_locator"
+      ],
+      "source_section": "Evidence and embedded images"
+    },
+    {
+      "id": "OCRExtraction",
+      "label": "OCRExtraction",
+      "parent": "DomainRecord",
+      "group": "Evidence",
+      "definition": "OCR output with regions, reading order, method and uncertainty; it cannot alone establish original governing text.",
+      "properties": [
+        "recorded_text",
+        "extraction_method",
+        "regions",
+        "reading_order"
+      ],
+      "source_section": "Evidence and embedded images"
+    },
+    {
+      "id": "DiagramExtraction",
+      "label": "Diagram Extraction",
+      "parent": "DomainRecord",
+      "group": "Evidence",
+      "definition": "Attributed labels, interfaces, dimensions and relationships extracted from an original diagram.",
+      "properties": [
+        "recorded_text",
+        "extraction_method",
+        "regions"
+      ],
+      "source_section": "Evidence and embedded images"
+    },
+    {
+      "id": "ImageAnnotation",
+      "label": "Image Annotation",
+      "parent": "DomainRecord",
+      "group": "Evidence",
+      "definition": "A highlight, arrow, crop or comment kept distinguishable from original source content.",
+      "properties": [
+        "annotation_kind",
+        "recorded_text"
+      ],
+      "source_section": "Evidence and embedded images"
+    },
+    {
+      "id": "ReportedHistory",
+      "label": "Reported History",
+      "parent": "DomainRecord",
+      "group": "Evidence",
+      "definition": "Attributable reported history, including instructed facts and repair accounts, distinct from direct observation.",
+      "properties": [
+        "recorded_text"
+      ],
+      "source_section": "Evidence and embedded images"
+    },
+    {
+      "id": "LogicalUnit",
+      "label": "Logical Unit",
+      "parent": "DomainRecord",
+      "group": "Evidence",
+      "definition": "A structural source grouping used to preserve occurrence or explicitly shared item context.",
+      "properties": [
+        "recorded_text",
+        "source_locator"
+      ],
+      "source_section": "Evidence and embedded images"
+    },
+    {
+      "id": "EvidenceChunk",
+      "label": "Evidence Chunk",
+      "parent": "DomainRecord",
+      "group": "Evidence",
+      "definition": "A searchable evidence revision with exact source segments; a chunk does not receive its own ontology.",
+      "properties": [
+        "content_kind",
+        "source_segments",
+        "source_locator"
+      ],
+      "source_section": "Evidence and embedded images"
+    },
+    {
+      "id": "QualifiedAssertion",
+      "label": "Qualified Assertion",
+      "parent": "DomainRecord",
+      "group": "Governance",
+      "definition": "A relation reified with subject, object, source spans, scope and independent evidence/review/verification/applicability/outcome dimensions.",
+      "properties": [
+        "predicate_id",
+        "subject_id",
+        "object_id"
+      ],
+      "source_section": "Evidence status and uncertainty"
+    },
+    {
+      "id": "KnowledgeGap",
+      "label": "Knowledge Gap",
+      "parent": "DomainRecord",
+      "group": "Governance",
+      "definition": "Missing, conflicting or unresolved evidence, distinguished from proof that a document or event does not exist.",
+      "properties": [
+        "gap_kind",
+        "recorded_text",
+        "source_availability"
+      ],
+      "source_section": "Evidence status and uncertainty"
+    },
+    {
+      "id": "ReviewedRule",
+      "label": "Reviewed Rule",
+      "parent": "DomainRecord",
+      "group": "Governance",
+      "definition": "An explicit sourced/versioned applicability or classification rule requiring reviewer and regression-case validation before activation.",
+      "properties": [
+        "rule_kind",
+        "jurisdiction",
+        "conditions",
+        "exceptions",
+        "reviewer",
+        "fixture_ids"
+      ],
+      "source_section": "Evidence status and uncertainty"
+    },
+    {
+      "id": "SearchConcept",
+      "label": "Search Concept",
+      "parent": "DomainRecord",
+      "group": "Governance",
+      "definition": "A governed discovery term and aliases; similarity or alias matching cannot mint a factual cause, class or adoption link.",
+      "properties": [
+        "recorded_name",
+        "aliases"
+      ],
+      "source_section": "Evidence status and uncertainty"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "has_building",
+      "label": "has building",
+      "domains": [
+        "Project"
+      ],
+      "ranges": [
+        "Building"
+      ],
+      "definition": "A sourced project/building association.",
+      "source_section": "Buildings and their context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_part",
+      "label": "has part",
+      "domains": [
+        "Building"
+      ],
+      "ranges": [
+        "BuildingPart"
+      ],
+      "definition": "A sourced building/part association, without propagating classification.",
+      "source_section": "Buildings and their context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_location",
+      "label": "has location",
+      "domains": [
+        "DefectOccurrence",
+        "BuildingPart"
+      ],
+      "ranges": [
+        "Location"
+      ],
+      "definition": "The subject's recorded location, without deciding failure versus damage location.",
+      "source_section": "Buildings and their context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "concerns_element",
+      "label": "concerns element",
+      "domains": [
+        "DefectOccurrence",
+        "Assessment",
+        "DefectItem"
+      ],
+      "ranges": [
+        "BuildingElement"
+      ],
+      "definition": "A source-backed recorded or candidate element association.",
+      "source_section": "Buildings and their context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "element_at",
+      "label": "element at",
+      "domains": [
+        "BuildingElement"
+      ],
+      "ranges": [
+        "Location"
+      ],
+      "definition": "A specifically supported element/location link; not inferred from adjacent damage.",
+      "source_section": "Buildings and their context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_failure_location",
+      "label": "has failure location",
+      "domains": [
+        "CauseAssessment"
+      ],
+      "ranges": [
+        "Location"
+      ],
+      "definition": "The sourced location of the proposed failure mechanism.",
+      "source_section": "Reasoning and causation",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_damage_location",
+      "label": "has damage location",
+      "domains": [
+        "ConsequenceAssessment"
+      ],
+      "ranges": [
+        "Location"
+      ],
+      "definition": "The sourced location of consequential damage.",
+      "source_section": "Reasoning and causation",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "part_of_system",
+      "label": "part of system",
+      "domains": [
+        "BuildingElement"
+      ],
+      "ranges": [
+        "ConstructionSystem"
+      ],
+      "definition": "A source-backed component/system relationship.",
+      "source_section": "Buildings and their context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "uses_material",
+      "label": "uses material",
+      "domains": [
+        "BuildingElement",
+        "ConstructionSystem"
+      ],
+      "ranges": [
+        "Material"
+      ],
+      "definition": "A stated material association, retaining identification status.",
+      "source_section": "Buildings and their context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "uses_product",
+      "label": "uses product",
+      "domains": [
+        "BuildingElement",
+        "ConstructionSystem"
+      ],
+      "ranges": [
+        "Product"
+      ],
+      "definition": "A stated product association; unknown products are not supplied.",
+      "source_section": "Buildings and their context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_interface",
+      "label": "has interface",
+      "domains": [
+        "BuildingElement",
+        "Assessment"
+      ],
+      "ranges": [
+        "Interface"
+      ],
+      "definition": "A source-discussed junction/interface.",
+      "source_section": "Buildings and their context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "interface_between",
+      "label": "interface between",
+      "domains": [
+        "Interface"
+      ],
+      "ranges": [
+        "BuildingElement"
+      ],
+      "definition": "The specifically identified elements participating in an interface.",
+      "source_section": "Buildings and their context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_use",
+      "label": "has use",
+      "domains": [
+        "BuildingPart",
+        "Building"
+      ],
+      "ranges": [
+        "BuildingUse"
+      ],
+      "definition": "A documented use; not a building-class inference.",
+      "source_section": "Buildings and their context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_condition",
+      "label": "has condition",
+      "domains": [
+        "Assessment",
+        "BuildingElement",
+        "AssessmentContext"
+      ],
+      "ranges": [
+        "EnvironmentalCondition",
+        "ConstructionCondition"
+      ],
+      "definition": "A source-stated condition relevant to the scoped assessment.",
+      "source_section": "Buildings and their context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_classification_assessment",
+      "label": "has classification assessment",
+      "domains": [
+        "BuildingPart",
+        "Building"
+      ],
+      "ranges": [
+        "BuildingClassificationAssessment"
+      ],
+      "definition": "A scoped classification assessment with source/context.",
+      "source_section": "Building classification",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "assesses_class",
+      "label": "assesses class",
+      "domains": [
+        "ClassificationAssessment"
+      ],
+      "ranges": [
+        "BuildingClass",
+        "ConcreteFinishClass",
+        "MembraneClass"
+      ],
+      "definition": "A classification assessment of its stated kind; class families are disjoint.",
+      "source_section": "Building classification",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "uses_definition",
+      "label": "uses definition",
+      "domains": [
+        "ClassificationAssessment"
+      ],
+      "ranges": [
+        "ClassificationDefinition"
+      ],
+      "definition": "The exact definition and exceptions considered.",
+      "source_section": "Building classification",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "definition_from",
+      "label": "definition from",
+      "domains": [
+        "ClassificationDefinition"
+      ],
+      "ranges": [
+        "SourceFragment"
+      ],
+      "definition": "Original source support for a classification definition.",
+      "source_section": "Building classification",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_work",
+      "label": "has work",
+      "domains": [
+        "Project",
+        "BuildingPart",
+        "BuildingElement"
+      ],
+      "ranges": [
+        "WorkEvent",
+        "WorkPackage",
+        "ProposedRemedialWork"
+      ],
+      "definition": "Affected work scope, distinguishing original, later and proposed work.",
+      "source_section": "Work and approval context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "records_repair",
+      "label": "records repair",
+      "domains": [
+        "DefectItem"
+      ],
+      "ranges": [
+        "RepairEvent"
+      ],
+      "definition": "Source-recorded repair history, never created from a recommendation.",
+      "source_section": "Remediation and repair history",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_history",
+      "label": "has history",
+      "domains": [
+        "DefectItem",
+        "Reasoning"
+      ],
+      "ranges": [
+        "ReportedHistory"
+      ],
+      "definition": "Reported/instructed history retained with its attribution.",
+      "source_section": "Reasoning and causation",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_context",
+      "label": "has context",
+      "domains": [
+        "Assessment",
+        "ApplicabilityAssessment",
+        "WorkPackage"
+      ],
+      "ranges": [
+        "AssessmentContext"
+      ],
+      "definition": "The context and purpose of an assessment.",
+      "source_section": "Work and approval context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "context_part",
+      "label": "context part",
+      "domains": [
+        "AssessmentContext"
+      ],
+      "ranges": [
+        "BuildingPart"
+      ],
+      "definition": "The particular building part in the context.",
+      "source_section": "Work and approval context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "context_work",
+      "label": "context work",
+      "domains": [
+        "AssessmentContext"
+      ],
+      "ranges": [
+        "WorkPackage",
+        "WorkEvent",
+        "ProposedRemedialWork"
+      ],
+      "definition": "The relevant work and assessment purpose.",
+      "source_section": "Work and approval context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_fact",
+      "label": "has fact",
+      "domains": [
+        "AssessmentContext"
+      ],
+      "ranges": [
+        "ProjectFact"
+      ],
+      "definition": "A sourced/declarative fact retaining conflict and provenance.",
+      "source_section": "Work and approval context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_approval_evidence",
+      "label": "has approval evidence",
+      "domains": [
+        "WorkPackage",
+        "AssessmentContext",
+        "SourceDocument"
+      ],
+      "ranges": [
+        "ApprovalRecord"
+      ],
+      "definition": "An approval/certification record or reported identity, preserving source availability.",
+      "source_section": "Work and approval context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "records_inspection",
+      "label": "records inspection",
+      "domains": [
+        "SourceDocument",
+        "Assessment"
+      ],
+      "ranges": [
+        "InspectionRecord"
+      ],
+      "definition": "A recorded inspection and its scope/date.",
+      "source_section": "Work and approval context",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "documents_solution",
+      "label": "documents solution",
+      "domains": [
+        "ComplianceAssessment"
+      ],
+      "ranges": [
+        "PerformanceSolutionRecord"
+      ],
+      "definition": "A documented Performance Solution; absence of evidence is unresolved.",
+      "source_section": "Requirements and source fragments",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "version_of",
+      "label": "version of",
+      "domains": [
+        "DocumentVersion"
+      ],
+      "ranges": [
+        "SourceDocument"
+      ],
+      "definition": "The source identity associated with an immutable version.",
+      "source_section": "Evidence and embedded images",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_edition",
+      "label": "has edition",
+      "domains": [
+        "CodeFamily",
+        "StandardFamily",
+        "StandardPart"
+      ],
+      "ranges": [
+        "CodeEdition",
+        "StandardEdition"
+      ],
+      "definition": "A stated edition identity, separate from adoption or applicability.",
+      "source_section": "Australian Standard editions and reference relationships",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_standard_part",
+      "label": "has standard part",
+      "domains": [
+        "StandardFamily"
+      ],
+      "ranges": [
+        "StandardPart"
+      ],
+      "definition": "A distinct part within a standard family.",
+      "source_section": "Australian Standard editions and reference relationships",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_volume",
+      "label": "has volume",
+      "domains": [
+        "CodeEdition"
+      ],
+      "ranges": [
+        "CodeVolume"
+      ],
+      "definition": "An edition-specific code volume identity.",
+      "source_section": "Australian Standard editions and reference relationships",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_jurisdiction_provision",
+      "label": "has jurisdiction provision",
+      "domains": [
+        "CodeEdition"
+      ],
+      "ranges": [
+        "JurisdictionProvision"
+      ],
+      "definition": "A separately sourced jurisdiction provision/variation.",
+      "source_section": "Australian Standard editions and reference relationships",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "contains_fragment",
+      "label": "contains fragment",
+      "domains": [
+        "DocumentVersion",
+        "CodeEdition",
+        "CodeVolume",
+        "StandardEdition"
+      ],
+      "ranges": [
+        "SourceFragment",
+        "DepictedFragment"
+      ],
+      "definition": "A source fragment belongs to a specific identified document context.",
+      "source_section": "Requirements and source fragments",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "fragment_parent",
+      "label": "fragment parent",
+      "domains": [
+        "SourceFragment"
+      ],
+      "ranges": [
+        "SourceFragment"
+      ],
+      "definition": "Required parent provision or containing fragment context.",
+      "source_section": "Requirements and source fragments",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "depends_on_fragment",
+      "label": "depends on fragment",
+      "domains": [
+        "SourceFragment",
+        "Requirement"
+      ],
+      "ranges": [
+        "SourceFragment"
+      ],
+      "definition": "A definition, header, note, condition or exception dependency.",
+      "source_section": "Requirements and source fragments",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "cites_edition",
+      "label": "cites edition",
+      "domains": [
+        "ReportVersion",
+        "Reasoning",
+        "Assessment",
+        "DefectItem",
+        "DefectOccurrence"
+      ],
+      "ranges": [
+        "CodeEdition",
+        "StandardEdition",
+        "StandardFamily",
+        "StandardPart"
+      ],
+      "definition": "A report citation with reported verification state, not automatic adoption.",
+      "source_section": "Australian Standard editions and reference relationships",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_reference_relationship",
+      "label": "has reference relationship",
+      "domains": [
+        "SourceFragment",
+        "Reasoning"
+      ],
+      "ranges": [
+        "ReferenceRelationship"
+      ],
+      "definition": "A reported or verified scoped reference link with explicit basis.",
+      "source_section": "Australian Standard editions and reference relationships",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "references_source",
+      "label": "references source",
+      "domains": [
+        "ReferenceRelationship"
+      ],
+      "ranges": [
+        "CodeEdition",
+        "StandardEdition",
+        "DocumentVersion"
+      ],
+      "definition": "The exact target identity, basis and amendments of a qualified reference relationship.",
+      "source_section": "Australian Standard editions and reference relationships",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "reference_origin",
+      "label": "reference origin",
+      "domains": [
+        "ReferenceRelationship"
+      ],
+      "ranges": [
+        "SourceFragment",
+        "CodeEdition",
+        "StandardEdition"
+      ],
+      "definition": "The referencing provision and edition identity.",
+      "source_section": "Australian Standard editions and reference relationships",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "chain_contains",
+      "label": "chain contains",
+      "domains": [
+        "ReferenceChain"
+      ],
+      "ranges": [
+        "ReferenceRelationship"
+      ],
+      "definition": "An independently assessed link in a primary/secondary/further chain.",
+      "source_section": "Australian Standard editions and reference relationships",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "expresses_requirement",
+      "label": "expresses requirement",
+      "domains": [
+        "SourceFragment"
+      ],
+      "ranges": [
+        "Requirement"
+      ],
+      "definition": "A required outcome under a stated basis and source role.",
+      "source_section": "Requirements and source fragments",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "considers_requirement",
+      "label": "considers requirement",
+      "domains": [
+        "ComplianceAssessment",
+        "Reasoning"
+      ],
+      "ranges": [
+        "Requirement",
+        "SourceFragment"
+      ],
+      "definition": "A considered requirement, without independently establishing applicability.",
+      "source_section": "Requirements and source fragments",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_applicability_assessment",
+      "label": "has applicability assessment",
+      "domains": [
+        "ComplianceAssessment",
+        "Requirement",
+        "AssessmentContext"
+      ],
+      "ranges": [
+        "ApplicabilityAssessment"
+      ],
+      "definition": "A context-specific supported/excluded/unresolved evaluation.",
+      "source_section": "Australian Standard editions and reference relationships",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "decision_uses_rule",
+      "label": "decision uses rule",
+      "domains": [
+        "ApplicabilityAssessment",
+        "ClassificationAssessment"
+      ],
+      "ranges": [
+        "ReviewedRule"
+      ],
+      "definition": "A reviewed, regression-validated rule considered by a decision.",
+      "source_section": "Evidence status and uncertainty",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "contains_item",
+      "label": "contains item",
+      "domains": [
+        "ReportVersion"
+      ],
+      "ranges": [
+        "DefectItem"
+      ],
+      "definition": "An authored report topic grouping.",
+      "source_section": "Defect items and individual occurrences",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_occurrence",
+      "label": "has occurrence",
+      "domains": [
+        "DefectItem"
+      ],
+      "ranges": [
+        "DefectOccurrence"
+      ],
+      "definition": "A finding explicitly scoped to its report item/version/schedule.",
+      "source_section": "Defect items and individual occurrences",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "records_observation",
+      "label": "records observation",
+      "domains": [
+        "DefectOccurrence",
+        "DefectItem"
+      ],
+      "ranges": [
+        "Observation"
+      ],
+      "definition": "A specifically scoped observation, not proximity-based photo assignment.",
+      "source_section": "Defect items and individual occurrences",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_measurement",
+      "label": "has measurement",
+      "domains": [
+        "Observation",
+        "DefectOccurrence",
+        "DefectItem",
+        "Reasoning"
+      ],
+      "ranges": [
+        "TestMeasurement"
+      ],
+      "definition": "A value/reading as written with units and uncertainty, not an assumed moisture percentage.",
+      "source_section": "Defect items and individual occurrences",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_assessment",
+      "label": "has assessment",
+      "domains": [
+        "DefectOccurrence",
+        "DefectItem"
+      ],
+      "ranges": [
+        "Assessment"
+      ],
+      "definition": "An attributable assessment of the finding or shared item.",
+      "source_section": "Defect items and individual occurrences",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_reasoning",
+      "label": "has reasoning",
+      "domains": [
+        "DefectOccurrence",
+        "DefectItem",
+        "Assessment"
+      ],
+      "ranges": [
+        "Reasoning"
+      ],
+      "definition": "The authored premises and reasoning in explicit occurrence/shared scope.",
+      "source_section": "Reasoning and causation",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_extent",
+      "label": "has extent",
+      "domains": [
+        "DefectOccurrence",
+        "DefectItem"
+      ],
+      "ranges": [
+        "OccurrenceExtentAssessment"
+      ],
+      "definition": "An authored distribution assessment, separate from severity/status.",
+      "source_section": "Defect items and individual occurrences",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_status",
+      "label": "has status",
+      "domains": [
+        "DefectOccurrence",
+        "DefectItem"
+      ],
+      "ranges": [
+        "StatusAssessment"
+      ],
+      "definition": "An authored major/non-major status and its source basis.",
+      "source_section": "Defect items and individual occurrences",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_severity",
+      "label": "has severity",
+      "domains": [
+        "DefectOccurrence",
+        "DefectItem"
+      ],
+      "ranges": [
+        "SeverityAssessment"
+      ],
+      "definition": "A physical severity assessment, not statutory status.",
+      "source_section": "Defect items and individual occurrences",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_cause_assessment",
+      "label": "has cause assessment",
+      "domains": [
+        "DefectOccurrence",
+        "DefectItem",
+        "Reasoning"
+      ],
+      "ranges": [
+        "CauseAssessment"
+      ],
+      "definition": "An attributed confirmed/suspected/alternative/unresolved cause assessment.",
+      "source_section": "Reasoning and causation",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_consequence",
+      "label": "has consequence",
+      "domains": [
+        "DefectOccurrence",
+        "DefectItem",
+        "Reasoning"
+      ],
+      "ranges": [
+        "ConsequenceAssessment"
+      ],
+      "definition": "An existing/predicted consequence with source certainty.",
+      "source_section": "Reasoning and causation",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "reasoning_premise",
+      "label": "reasoning premise",
+      "domains": [
+        "Reasoning",
+        "ApplicationInference"
+      ],
+      "ranges": [
+        "Observation",
+        "TestMeasurement",
+        "ReportedHistory",
+        "Requirement",
+        "SourceFragment"
+      ],
+      "definition": "An explicitly sourced reasoning premise; application inference stays separate.",
+      "source_section": "Reasoning and causation",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_remediation",
+      "label": "has remediation",
+      "domains": [
+        "DefectOccurrence",
+        "DefectItem"
+      ],
+      "ranges": [
+        "RemediationOption"
+      ],
+      "definition": "A proposed source-authored repair option, not an undertaken event.",
+      "source_section": "Remediation and repair history",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "option_scope",
+      "label": "option scope",
+      "domains": [
+        "RemediationOption"
+      ],
+      "ranges": [
+        "RemediationScope"
+      ],
+      "definition": "The complete scope, qualifications and source context of an option.",
+      "source_section": "Remediation and repair history",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_step",
+      "label": "has step",
+      "domains": [
+        "RemediationOption"
+      ],
+      "ranges": [
+        "RemediationStep"
+      ],
+      "definition": "A proposed action retained in its authored order.",
+      "source_section": "Remediation and repair history",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_prerequisite",
+      "label": "has prerequisite",
+      "domains": [
+        "RemediationOption",
+        "ProposedRemedialWork"
+      ],
+      "ranges": [
+        "Prerequisite"
+      ],
+      "definition": "A source-stated prerequisite applying to this option/work scope.",
+      "source_section": "Remediation and repair history",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_verification_criterion",
+      "label": "has verification criterion",
+      "domains": [
+        "RemediationOption",
+        "WorkPackage"
+      ],
+      "ranges": [
+        "VerificationCriterion"
+      ],
+      "definition": "An explicitly supplied or separately reviewed acceptance criterion.",
+      "source_section": "Remediation and repair history",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "alternative_to",
+      "label": "alternative to",
+      "domains": [
+        "RemediationOption"
+      ],
+      "ranges": [
+        "RemediationOption"
+      ],
+      "definition": "Explicit source alternatives kept separate with their own conditions.",
+      "source_section": "Remediation and repair history",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "proposes_work",
+      "label": "proposes work",
+      "domains": [
+        "RemediationOption"
+      ],
+      "ranges": [
+        "ProposedRemedialWork"
+      ],
+      "definition": "The proposed work scope, without asserting implementation.",
+      "source_section": "Remediation and repair history",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "mentions_party",
+      "label": "mentions party",
+      "domains": [
+        "ReportVersion",
+        "ResponsibilityAssessment"
+      ],
+      "ranges": [
+        "Party",
+        "PartyRole"
+      ],
+      "definition": "A source-named party or role; generic roles do not resolve a particular party.",
+      "source_section": "Parties and responsibility assessments",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_role",
+      "label": "has role",
+      "domains": [
+        "Party"
+      ],
+      "ranges": [
+        "PartyRole"
+      ],
+      "definition": "A recorded role, separate from appointment and responsibility.",
+      "source_section": "Parties and responsibility assessments",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_appointment",
+      "label": "has appointment",
+      "domains": [
+        "Party"
+      ],
+      "ranges": [
+        "Appointment"
+      ],
+      "definition": "A sourced appointment/work scope.",
+      "source_section": "Parties and responsibility assessments",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_responsibility",
+      "label": "has responsibility",
+      "domains": [
+        "DefectOccurrence",
+        "DefectItem"
+      ],
+      "ranges": [
+        "ResponsibilityAssessment"
+      ],
+      "definition": "An authored responsibility attribution, distinct from cause or binding liability.",
+      "source_section": "Parties and responsibility assessments",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "assesses_responsibility",
+      "label": "assesses responsibility",
+      "domains": [
+        "ResponsibilityAssessment"
+      ],
+      "ranges": [
+        "Party",
+        "PartyRole"
+      ],
+      "definition": "The specifically named party or unresolved role being assessed.",
+      "source_section": "Parties and responsibility assessments",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_authorship",
+      "label": "has authorship",
+      "domains": [
+        "DocumentVersion",
+        "Assessment",
+        "Reasoning"
+      ],
+      "ranges": [
+        "Authorship"
+      ],
+      "definition": "The attributed author and recorded dates.",
+      "source_section": "Parties and responsibility assessments",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_image_occurrence",
+      "label": "has image occurrence",
+      "domains": [
+        "ReportVersion",
+        "DocumentVersion"
+      ],
+      "ranges": [
+        "ImageOccurrence"
+      ],
+      "definition": "An image's structural occurrence in a document.",
+      "source_section": "Evidence and embedded images",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "uses_asset",
+      "label": "uses asset",
+      "domains": [
+        "DocumentVersion",
+        "ImageOccurrence"
+      ],
+      "ranges": [
+        "OriginalAsset"
+      ],
+      "definition": "The preserved original bytes used by this version/occurrence.",
+      "source_section": "Evidence and embedded images",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_visual_context",
+      "label": "has visual context",
+      "domains": [
+        "DefectItem"
+      ],
+      "ranges": [
+        "ImageOccurrence"
+      ],
+      "definition": "Explicitly shared item context, not evidence for every occurrence.",
+      "source_section": "Evidence and embedded images",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_visual_evidence",
+      "label": "has visual evidence",
+      "domains": [
+        "DefectOccurrence",
+        "Assessment"
+      ],
+      "ranges": [
+        "ImageOccurrence"
+      ],
+      "definition": "A specifically sourced finding/assessment-to-image association.",
+      "source_section": "Evidence and embedded images",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "depicts_fragment",
+      "label": "depicts fragment",
+      "domains": [
+        "ImageOccurrence"
+      ],
+      "ranges": [
+        "DepictedFragment"
+      ],
+      "definition": "A visible/caption/OCR fragment identity, separate from verification and applicability.",
+      "source_section": "Evidence and embedded images",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "depiction_of",
+      "label": "depiction of",
+      "domains": [
+        "DepictedFragment"
+      ],
+      "ranges": [
+        "SourceFragment"
+      ],
+      "definition": "An independently matched original source fragment when verified.",
+      "source_section": "Evidence and embedded images",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_ocr",
+      "label": "has ocr",
+      "domains": [
+        "ImageOccurrence"
+      ],
+      "ranges": [
+        "OCRExtraction"
+      ],
+      "definition": "OCR extraction with regions, reading order and uncertainty.",
+      "source_section": "Evidence and embedded images",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_diagram_extraction",
+      "label": "has diagram extraction",
+      "domains": [
+        "ImageOccurrence"
+      ],
+      "ranges": [
+        "DiagramExtraction"
+      ],
+      "definition": "Attributed diagram labels, dimensions or relationships.",
+      "source_section": "Evidence and embedded images",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_annotation",
+      "label": "has annotation",
+      "domains": [
+        "ImageOccurrence"
+      ],
+      "ranges": [
+        "ImageAnnotation"
+      ],
+      "definition": "A separately identified annotation/crop/highlight.",
+      "source_section": "Evidence and embedded images",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_passage",
+      "label": "has passage",
+      "domains": [
+        "DocumentVersion"
+      ],
+      "ranges": [
+        "TextPassage"
+      ],
+      "definition": "A preserved exact source span with its locator/content kind.",
+      "source_section": "Evidence and embedded images",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "contains_unit",
+      "label": "contains unit",
+      "domains": [
+        "DefectItem"
+      ],
+      "ranges": [
+        "LogicalUnit",
+        "Observation",
+        "Reasoning",
+        "Assessment",
+        "RemediationScope"
+      ],
+      "definition": "An explicit structural source grouping.",
+      "source_section": "Evidence and embedded images",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_evidence_chunk",
+      "label": "has evidence chunk",
+      "domains": [
+        "LogicalUnit",
+        "Observation",
+        "Reasoning",
+        "Assessment",
+        "RemediationScope"
+      ],
+      "ranges": [
+        "EvidenceChunk"
+      ],
+      "definition": "A search chunk supporting this source grouping.",
+      "source_section": "Evidence and embedded images",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "chunk_supports",
+      "label": "chunk supports",
+      "domains": [
+        "EvidenceChunk"
+      ],
+      "ranges": [
+        "QualifiedAssertion"
+      ],
+      "definition": "An exact source-span/shared-context mapping, not a similarity-generated fact.",
+      "source_section": "Evidence and embedded images",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "supported_by",
+      "label": "supported by",
+      "domains": [
+        "DomainRecord"
+      ],
+      "ranges": [
+        "TextPassage",
+        "ImageOccurrence",
+        "OriginalAsset"
+      ],
+      "definition": "Source support with kind/scope/status retained.",
+      "source_section": "Evidence status and uncertainty",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "has_gap",
+      "label": "has gap",
+      "domains": [
+        "DomainRecord"
+      ],
+      "ranges": [
+        "KnowledgeGap"
+      ],
+      "definition": "A scoped missing/conflicting/unresolved evidence gap, not proof of nonexistence.",
+      "source_section": "Evidence status and uncertainty",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    },
+    {
+      "id": "mentions_concept",
+      "label": "mentions concept",
+      "domains": [
+        "DomainRecord"
+      ],
+      "ranges": [
+        "SearchConcept"
+      ],
+      "definition": "A governed discovery mapping that cannot mint causal/classification/adoption facts.",
+      "source_section": "Evidence status and uncertainty",
+      "requires_source": true,
+      "requires_scope": true,
+      "qualified": true
+    }
+  ],
+  "property_types": {
+    "aliases": "array_or_unknown",
+    "alternative_group": "string_or_unknown",
+    "amendments": "array_or_unknown",
+    "annotation_kind": "string_or_unknown",
+    "approval_date": "string_or_unknown",
+    "approval_kind": "string_or_unknown",
+    "approval_pathway": "string_or_unknown",
+    "assessment_date": "string_or_unknown",
+    "assessment_purpose": "string_or_unknown",
+    "asset_hash": "string_or_unknown",
+    "author_name": "string_or_unknown",
+    "byte_size": "integer_or_unknown",
+    "caption": "string_or_unknown",
+    "causal_certainty": "string_or_unknown",
+    "class_identifier": "string_or_unknown",
+    "compliance_pathway": "string_or_unknown",
+    "conditions": "array_or_unknown",
+    "consequence_kind": "string_or_unknown",
+    "content_kind": "string_or_unknown",
+    "definition_reference": "string_or_unknown",
+    "document_role": "string_or_unknown",
+    "edition_year": "string_or_unknown",
+    "effective_date": "string_or_unknown",
+    "element_category": "string_or_unknown",
+    "end_cp": "integer_or_unknown",
+    "exceptions": "array_or_unknown",
+    "extraction_method": "string_or_unknown",
+    "fact_name": "string_or_unknown",
+    "fact_provenance": "string_or_unknown",
+    "fact_value": "string_or_unknown",
+    "filename": "string_or_unknown",
+    "fixture_ids": "array_or_unknown",
+    "fragment_identifier": "string_or_unknown",
+    "fragment_kind": "string_or_unknown",
+    "fragment_role": "string_or_unknown",
+    "gap_kind": "string_or_unknown",
+    "image_role": "string_or_unknown",
+    "inspection_date": "string_or_unknown",
+    "instrument": "string_or_unknown",
+    "jurisdiction": "string_or_unknown",
+    "limitations": "string_or_unknown",
+    "location_role": "string_or_unknown",
+    "manufacturer": "string_or_unknown",
+    "measurement_date": "string_or_unknown",
+    "measurement_method": "string_or_unknown",
+    "mime_type": "string_or_unknown",
+    "object_id": "string_or_unknown",
+    "observation_method": "string_or_unknown",
+    "part_identifier": "string_or_unknown",
+    "predicate_id": "string_or_unknown",
+    "premise_ids": "array_or_unknown",
+    "prerequisite_kind": "string_or_unknown",
+    "printed_source_page": "string_or_unknown",
+    "publication_date": "string_or_unknown",
+    "publisher": "string_or_unknown",
+    "reading_order": "array_or_unknown",
+    "recorded_identifier": "string_or_unknown",
+    "recorded_location": "string_or_unknown",
+    "recorded_name": "string_or_unknown",
+    "recorded_outcome": "string_or_unknown",
+    "recorded_text": "string_or_unknown",
+    "recorded_use": "string_or_unknown",
+    "reference_basis": "string_or_unknown",
+    "reference_family": "string_or_unknown",
+    "regions": "array_or_unknown",
+    "relevant_dates": "array_or_unknown",
+    "requirement_basis": "string_or_unknown",
+    "requirement_identifier": "string_or_unknown",
+    "resolution": "string_or_unknown",
+    "reviewer": "string_or_unknown",
+    "revision_identifier": "string_or_unknown",
+    "role_name": "string_or_unknown",
+    "rule_kind": "string_or_unknown",
+    "schedule_context": "string_or_unknown",
+    "sequence": "integer_or_unknown",
+    "source_availability": "string_or_unknown",
+    "source_id": "string_or_unknown",
+    "source_locator": "string_or_unknown",
+    "source_segments": "array_or_unknown",
+    "start_cp": "integer_or_unknown",
+    "subclass_identifier": "string_or_unknown",
+    "subject_id": "string_or_unknown",
+    "units_as_written": "string_or_unknown",
+    "value_as_written": "string_or_unknown",
+    "version_date": "string_or_unknown",
+    "volume_identifier": "string_or_unknown",
+    "work_date": "string_or_unknown",
+    "work_kind": "string_or_unknown",
+    "work_scope": "string_or_unknown"
+  },
+  "status_dimensions": {
+    "statement_kind": [
+      "recorded_observation",
+      "reported_history",
+      "author_opinion",
+      "user_declaration",
+      "original_source_text",
+      "application_inference",
+      "structural_document_membership",
+      "reported_reference",
+      "source_supported_mapping",
+      "ocr_extraction"
+    ],
+    "review_state": [
+      "extracted",
+      "uncertain",
+      "reviewed",
+      "superseded"
+    ],
+    "source_identification": [
+      "source_text",
+      "identifier_visible",
+      "caption_candidate",
+      "ocr_candidate",
+      "ambiguous",
+      "unknown"
+    ],
+    "reference_verification": [
+      "not_applicable",
+      "reported_only",
+      "embedded_extract_identified",
+      "original_source_matched",
+      "conflicting",
+      "unverified"
+    ],
+    "applicability": [
+      "supported",
+      "excluded",
+      "unresolved",
+      "not_assessed"
+    ],
+    "repair_outcome": [
+      "not_applicable",
+      "recommended",
+      "reported_undertaken",
+      "documented_outcome",
+      "outcome_unknown"
+    ],
+    "certainty": [
+      "source_recorded",
+      "author_attributed",
+      "suspected_or_alternative",
+      "unresolved"
+    ],
+    "source_availability": [
+      "imported",
+      "not_supplied",
+      "unresolved"
+    ]
+  },
+  "disjoint_sets": [
+    [
+      "BuildingClass",
+      "ConcreteFinishClass",
+      "MembraneClass"
+    ],
+    [
+      "ImageAsset",
+      "ImageOccurrence",
+      "DepictedFragment"
+    ],
+    [
+      "RemediationOption",
+      "RepairEvent"
+    ]
+  ],
+  "constraints": [
+    {
+      "id": "source_scope",
+      "rule": "Every factual relation has owned source spans/structural membership and explicit occurrence/item/context scope."
+    },
+    {
+      "id": "no_class_family_merging",
+      "rule": "Building, concrete finish and membrane class identifiers are not equivalent."
+    },
+    {
+      "id": "no_identifier_merging",
+      "rule": "Finding IDs are scoped to report/version/schedule; repeated identifiers produce review gaps, not automatic merges."
+    },
+    {
+      "id": "no_adoption_by_year",
+      "rule": "Publication/citation year alone never establishes adoption or applicability."
+    },
+    {
+      "id": "no_report_opinion_upgrade",
+      "rule": "Review does not change an authored opinion into an observation or binding legal determination."
+    },
+    {
+      "id": "original_rule_gate",
+      "rule": "Governing/classification decisions require original source support, reviewed rules and a specific assessment context."
+    },
+    {
+      "id": "no_recommendation_implementation",
+      "rule": "A remediation option/step cannot imply a repair was undertaken or effective."
+    },
+    {
+      "id": "no_ocr_authority_upgrade",
+      "rule": "OCR/image identification stays separate from original-source verification and applicability."
+    },
+    {
+      "id": "no_measurement_conversion",
+      "rule": "Keep source values and units; do not infer moisture percentages or resolve uncertain decimals."
+    },
+    {
+      "id": "no_generic_applies_to",
+      "rule": "Reference basis, edition/part/amendments, conditions and exceptions remain explicit."
+    },
+    {
+      "id": "no_similarity_facts",
+      "rule": "Similarity and alias matching produce discovery mappings, not causal, classification or adoption facts."
+    },
+    {
+      "id": "missing_not_nonexistent",
+      "rule": "Unavailable evidence is not proof a document or event does not exist."
+    }
+  ],
+  "source_coverage": [
+    {
+      "section": "Purpose and central concept",
+      "covered_by": [
+        "Assessment",
+        "DefectOccurrence",
+        "concerns_element"
+      ]
+    },
+    {
+      "section": "Relationship overview",
+      "covered_by": [
+        "source_scope",
+        "contains_item",
+        "has_occurrence"
+      ]
+    },
+    {
+      "section": "Buildings and their context",
+      "covered_by": [
+        "Project",
+        "Building",
+        "BuildingPart",
+        "Location",
+        "BuildingElement",
+        "ConstructionSystem",
+        "Material",
+        "Product",
+        "Interface",
+        "BuildingUse",
+        "EnvironmentalCondition",
+        "ConstructionCondition",
+        "has_building",
+        "has_part",
+        "has_location",
+        "concerns_element",
+        "element_at",
+        "part_of_system",
+        "uses_material",
+        "uses_product",
+        "has_interface",
+        "interface_between",
+        "has_use",
+        "has_condition"
+      ]
+    },
+    {
+      "section": "Building classification",
+      "covered_by": [
+        "ClassificationAssessment",
+        "BuildingClassificationAssessment",
+        "ClassificationDefinition",
+        "BuildingClass",
+        "ConcreteFinishClass",
+        "MembraneClass",
+        "has_classification_assessment",
+        "assesses_class",
+        "uses_definition",
+        "definition_from"
+      ]
+    },
+    {
+      "section": "Work and approval context",
+      "covered_by": [
+        "WorkEvent",
+        "OriginalConstruction",
+        "Alteration",
+        "RepairEvent",
+        "ProposedRemedialWork",
+        "WorkPackage",
+        "AssessmentContext",
+        "ProjectFact",
+        "ApprovalRecord",
+        "ComplianceCertificate",
+        "InspectionRecord",
+        "PerformanceSolutionRecord",
+        "has_work",
+        "has_context",
+        "context_part",
+        "context_work",
+        "has_fact",
+        "has_approval_evidence",
+        "records_inspection"
+      ]
+    },
+    {
+      "section": "Code editions and volumes",
+      "covered_by": [
+        "CodeEdition",
+        "CodeVolume",
+        "JurisdictionProvision"
+      ]
+    },
+    {
+      "section": "Australian Standard editions and reference relationships",
+      "covered_by": [
+        "CodeFamily",
+        "CodeEdition",
+        "CodeVolume",
+        "JurisdictionProvision",
+        "StandardFamily",
+        "StandardPart",
+        "StandardEdition",
+        "ReferenceRelationship",
+        "ReferenceChain",
+        "ApplicabilityAssessment",
+        "has_edition",
+        "has_standard_part",
+        "has_volume",
+        "has_jurisdiction_provision",
+        "cites_edition",
+        "has_reference_relationship",
+        "references_source",
+        "reference_origin",
+        "chain_contains",
+        "has_applicability_assessment"
+      ]
+    },
+    {
+      "section": "Requirements and source fragments",
+      "covered_by": [
+        "Drawing",
+        "Specification",
+        "ManufacturerInstruction",
+        "SourceFragment",
+        "Clause",
+        "Table",
+        "Figure",
+        "Appendix",
+        "Definition",
+        "Note",
+        "Guidance",
+        "DrawingDetail",
+        "LegalProvision",
+        "Requirement",
+        "PerformanceRequirement",
+        "DTSProvision",
+        "ComplianceAssessment",
+        "documents_solution",
+        "contains_fragment",
+        "fragment_parent",
+        "depends_on_fragment",
+        "expresses_requirement",
+        "considers_requirement"
+      ]
+    },
+    {
+      "section": "Defect items and individual occurrences",
+      "covered_by": [
+        "Assessment",
+        "DefectItem",
+        "DefectOccurrence",
+        "Observation",
+        "TestMeasurement",
+        "ExpertAssessment",
+        "OccurrenceExtentAssessment",
+        "StatusAssessment",
+        "SeverityAssessment",
+        "contains_item",
+        "has_occurrence",
+        "records_observation",
+        "has_measurement",
+        "has_assessment",
+        "has_extent",
+        "has_status",
+        "has_severity"
+      ]
+    },
+    {
+      "section": "Reasoning and causation",
+      "covered_by": [
+        "CauseAssessment",
+        "ConsequenceAssessment",
+        "Reasoning",
+        "ApplicationInference",
+        "has_failure_location",
+        "has_damage_location",
+        "has_history",
+        "has_reasoning",
+        "has_cause_assessment",
+        "has_consequence",
+        "reasoning_premise"
+      ]
+    },
+    {
+      "section": "Remediation and repair history",
+      "covered_by": [
+        "RemediationOption",
+        "RemediationScope",
+        "RemediationStep",
+        "Prerequisite",
+        "VerificationCriterion",
+        "records_repair",
+        "has_remediation",
+        "option_scope",
+        "has_step",
+        "has_prerequisite",
+        "has_verification_criterion",
+        "alternative_to",
+        "proposes_work"
+      ]
+    },
+    {
+      "section": "Parties and responsibility assessments",
+      "covered_by": [
+        "Party",
+        "PartyRole",
+        "Appointment",
+        "ResponsibilityAssessment",
+        "Authorship",
+        "mentions_party",
+        "has_role",
+        "has_appointment",
+        "has_responsibility",
+        "assesses_responsibility",
+        "has_authorship"
+      ]
+    },
+    {
+      "section": "Evidence and embedded images",
+      "covered_by": [
+        "SourceDocument",
+        "DocumentVersion",
+        "ReportVersion",
+        "OriginalAsset",
+        "ImageAsset",
+        "ImageOccurrence",
+        "DepictedFragment",
+        "TextPassage",
+        "OCRExtraction",
+        "DiagramExtraction",
+        "ImageAnnotation",
+        "ReportedHistory",
+        "LogicalUnit",
+        "EvidenceChunk",
+        "version_of",
+        "has_image_occurrence",
+        "uses_asset",
+        "has_visual_context",
+        "has_visual_evidence",
+        "depicts_fragment",
+        "depiction_of",
+        "has_ocr",
+        "has_diagram_extraction",
+        "has_annotation",
+        "has_passage",
+        "contains_unit",
+        "has_evidence_chunk",
+        "chunk_supports"
+      ]
+    },
+    {
+      "section": "Evidence status and uncertainty",
+      "covered_by": [
+        "DomainRecord",
+        "QualifiedAssertion",
+        "KnowledgeGap",
+        "ReviewedRule",
+        "SearchConcept",
+        "decision_uses_rule",
+        "supported_by",
+        "has_gap",
+        "mentions_concept"
+      ]
+    },
+    {
+      "section": "Building the source library and graph",
+      "covered_by": [
+        "EvidenceChunk",
+        "QualifiedAssertion",
+        "SearchConcept",
+        "ReviewedRule"
+      ]
+    },
+    {
+      "section": "Sample basis and implementation boundaries",
+      "covered_by": [
+        "source_scope",
+        "original_rule_gate"
+      ]
+    }
+  ]
+}
